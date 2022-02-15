@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">BloodShip</string>
+    <string name="bloodship">BloodShip</string>
+    <string name="app_note_splash_screen">This software will be made for the use of the students of Khulna University. There are several cases when any of us need blood but we didn’t find the blood. This software will help them in this regard.</string>
+    <string name="get_started">Get started</string>
+</resources>
