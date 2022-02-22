@@ -146,7 +146,8 @@
                         android:text="@string/next"
                         android:textColor="@color/white"
                         android:textStyle="bold"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:onClick="tryLogin"/>
                 </LinearLayout>
             </LinearLayout>
 

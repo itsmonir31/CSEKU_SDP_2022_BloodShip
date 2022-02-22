@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RequestBlood"
+
+    android:padding="10dp">
+<!--    android:background="@color/secondary_two"-->
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/ted"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request for Blood"
+        android:textColor="@color/primary"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_marginTop="5dp"
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/primary"
+        app:layout_constraintTop_toBottomOf="@+id/ted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETproblem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/patient_prob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ted" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETbg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/blood_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETproblem" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETquantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETbg" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETtime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:hint="@string/time_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETquantity" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:hint="@string/date_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETtime" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETaddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETdate" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETaContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/appalyee_phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETaddress" />
+
+    <EditText
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/secondary"
+        android:id="@+id/ETrContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/relative_phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETaContact"
+        android:importantForAutofill="no" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETrContact">
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/clearRequest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_secondary_two"
+            android:padding="10dp"
+            android:text="@string/clear"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:id="@+id/requestSend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@string/send_request"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

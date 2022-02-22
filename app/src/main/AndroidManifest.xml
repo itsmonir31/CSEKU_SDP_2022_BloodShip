@@ -10,9 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodShip">
         <activity
+            android:name=".AboutApps"
+            android:exported="false" />
+        <activity
+            android:name=".Guidelines"
+            android:exported="false" />
+        <activity
+            android:name=".RequestBlood"
+            android:exported="false" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +39,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

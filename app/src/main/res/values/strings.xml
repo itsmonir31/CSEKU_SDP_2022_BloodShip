@@ -1,6 +1,31 @@
 <resources>
     <string name="app_name">BloodShip</string>
     <string name="bloodship">BloodShip</string>
-    <string name="app_note_splash_screen">This software will be made for the use of the students of Khulna University. There are several cases when any of us need blood but we didn’t find the blood. This software will help them in this regard.</string>
+    <string name="app_note_splash_screen">This software is made for the use of the students of Khulna University. There are several cases when any of us need blood but we didn’t find the blood. This software will help them in this regard.</string>
     <string name="get_started">Get started</string>
+    <string name="your_mail">Your mail</string>
+    <string name="your_password">Your password</string>
+    <string name="forget_password">FORGET PASSWORD</string>
+    <string name="next">NEXT</string>
+    <string name="your_mobile_number">Your mobile number</string>
+    <string name="requested_blood">Requested Blood</string>
+
+
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="patient_prob">রোগীর সমস্যা</string>
+    <string name="blood_group">রক্তের গ্রুপ</string>
+    <string name="quantity">পরিমাণ</string>
+    <string name="time_et">সময় (Double tap for Time Picker)</string>
+    <string name="date_et">তারিখ (Double tap for Date Picker)</string>
+    <string name="address">ঠিকানা</string>
+    <string name="appalyee_phone">আবেদনকারীর ফোন নাম্বার</string>
+    <string name="relative_phone">রোগীর আত্মীয় কারোর ফোন নাম্বার</string>
+    <string name="clear">Clear</string>
+    <string name="send_request">Send Request</string>
+    <string name="patient_problem_cv">\"রোগীর সমস্যাঃ \"</string>
+    <string name="first_para">Rotaract Club of Khulna University is a non-profit organization which is run by the students of Khulna University. The club is aimed to make a better community and human asset. On 20th May 1999, the club got its international recognition from Rotary International. For 22 years the Rotaract club of Khulna University has been running its activities with the parenting club; the Rotary Club of Khulna. It is one of the first and prominent organizations in the Khulna University with maximum active members. The main agenda of the club is to construct a finer society along with the worthiest people.</string>
+    <string name="second_para">From the beginning, the main purpose of this club is to increase professional and personal skills as well as the efficiency of the university students. Besides this, every year the club stands beside the flood-affected people, provides Eid and winter clothes, plants trees, organizes quiz competitions, manages blood and tries to stand with people in need. All the members of this club tries to share their affection and culture among other native and foreign clubs through various fellowship programs.</string>
+    <string name="third_para">It is exceptional from any other club because Rotaract Club of Khulna University has the most dutiful members and it helps to create active citizens for building a greater community.</string>
+    <string name="about_club">About Club</string>
 </resources>
