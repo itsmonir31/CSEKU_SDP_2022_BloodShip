@@ -10,6 +10,33 @@
     <string name="your_mobile_number">Your mobile number</string>
     <string name="requested_blood">Requested Blood</string>
 
+    <string-array name="bg">
+        <item>All</item>
+        <item>A+</item>
+        <item>B+</item>
+        <item>O+</item>
+        <item>AB+</item>
+        <item>A-</item>
+        <item>B-</item>
+        <item>O-</item>
+        <item>AB-</item>
+    </string-array>
+
+
+    <string-array name="disc">
+        <item>ALL</item>
+        <item>ARCHI</item>
+        <item>CSE</item>
+        <item>ECE</item>
+        <item>BGE</item>
+        <item>MCJ</item>
+        <item>LAW</item>
+        <item>STAT</item>
+        <item>MATH</item>
+        <item>PM</item>
+        <item>AT</item>
+    </string-array>
+
 
     <string name="open">open</string>
     <string name="close">close</string>
@@ -28,4 +55,72 @@
     <string name="second_para">From the beginning, the main purpose of this club is to increase professional and personal skills as well as the efficiency of the university students. Besides this, every year the club stands beside the flood-affected people, provides Eid and winter clothes, plants trees, organizes quiz competitions, manages blood and tries to stand with people in need. All the members of this club tries to share their affection and culture among other native and foreign clubs through various fellowship programs.</string>
     <string name="third_para">It is exceptional from any other club because Rotaract Club of Khulna University has the most dutiful members and it helps to create active citizens for building a greater community.</string>
     <string name="about_club">About Club</string>
+    <string name="sign_in">SIGN IN</string>
+
+    <string name="who_can_give_blood">Who can give blood?</string>
+    <string name="who_can_details_">Most people can give blood if they are in good health. There are some basic requirements one need to fulfill in order to become a blood donor. Below are some basic eligibility guidelines:</string>
+
+    <string name="bullet_circle">•</string>
+
+
+    <string name="age">Age</string>
+    <string name="age_details">You are aged between 18 and 65.</string>
+
+
+    <string name="age_1">In some countries national legislation permits 16–17 year-olds to donate provided that they fulfil the physical and hematological criteria required and that appropriate consent is obtained.</string>
+    <string name="age_2">In some countries, regular donors over the age of 65 may be accepted at the discretion of the responsible physician. The upper age limit in some countries are 60.</string>
+
+    <string name="weight">Weight</string>
+    <string name="weight_details">You weigh at least 50 kg.</string>
+    <string name="weight_1">In some countries, donors of whole blood donations should weigh at least 45 kg to donate 350 ml ± 10%.</string>
+
+
+    <string name="health">Health</string>
+    <string name="health_details_1">You must be in good health at the time you donate.</string>
+
+    <string name="health_details_2">You cannot donate if you have a cold, flu, sore throat, cold sore, stomach bug or any other infection.</string>
+
+    <string name="health_details_3">If you have recently had a tattoo or body piercing you cannot donate for 6 months from the date of the procedure. If the body piercing was performed by a registered health professional and any inflammation has settled completely, you can donate blood after 12 hours.</string>
+
+    <string name="health_details_4">If you have visited the dentist for a minor procedure you must wait 24 hours before donating; for major work wait a month.</string>
+
+    <string name="health_details_5">You must not donate blood If you do not meet the minimum haemoglobin level for blood donation:</string>
+
+    <string name="health_1">A test will be administered at the donation site. In many countries, a haemoglobin level of not less than 12.0 g/dl for females and not less than 13.0 g/dl for males as the threshold.</string>
+    <string name="blood_group_eng">Blood Group</string>
+    <string name="discipline">Discipline:</string>
+
+
+    Travel
+    Travel to areas where mosquito-borne infections are endemic, e.g. malaria, dengue and Zika virus
+    infections, may result in a temporary deferral.
+
+    Many countries also implemented the policy to defer blood donors with a history of travel or
+    residence for defined cumulative exposure periods in specified countries or areas, as a measure
+    to reduce the risk of transmitting variant Creutzfeldt-Jakob Disease (vCJD) by blood
+    transfusion.
+
+    Behaviours
+    You must not give blood:
+
+    If you engaged in “at risk” sexual activity in the past 12 months
+    Individuals with behaviours below will be deferred permanently:
+    Have ever had a positive test for HIV (AIDS virus)
+    Have ever injected recreational drugs.
+    In the national blood donor selection guidelines, there are more behavior eligibility criteria.
+    Criteria could be different in different countries.
+
+    Pregnancy and breastfeeding
+    Following pregnancy, the deferral period should last as many months as the duration of the
+    pregnancy.
+
+    It is not advisable to donate blood while breast-feeding. Following childbirth, the deferral
+    period is at least 9 months (as for pregnancy) and until 3 months after your baby is
+    significantly weaned (i.e. getting most of his/her nutrition from solids or bottle feeding).
+
+    More information on eligibility to donate
+    National eligibility guidelines must be followed when people donate blood in the blood service
+    in specific countries. To find out whether any health conditions, medications, professions or
+    travel history to could affect your ability to give blood, please search for detailed
+    information in the national/local blood services.
 </resources>

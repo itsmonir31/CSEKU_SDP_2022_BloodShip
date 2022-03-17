@@ -49,10 +49,10 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(requestBlood);
                 break;
 
-//            case R.id.cvRequestedBlood:
-//                Intent duhr = new Intent(this, RequestedBloodList.class);
-//                startActivity(duhr);
-//                break;
+            case R.id.cvRequestedBlood:
+                Intent duhr = new Intent(this, RequestedBloodList.class);
+                startActivity(duhr);
+                break;
 
             case R.id.cvGuidelines:
                 Intent asr = new Intent(this, Guidelines.class);
@@ -60,8 +60,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 break;
 
 //            case R.id.cvBloodTeam:
-//                Intent maghrib = new Intent(this, BloodTeam.class);
-//                startActivity(maghrib);
+//                Intent requested = new Intent(this, RequestedBloodList.class);
+//                startActivity(requested);
 //                break;
 
             case R.id.cvAboutClub:
@@ -69,5 +69,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(club);
                 break;
         }
+    }
+
+    public void goProfile(View view) {
+        startActivity(new Intent(getApplicationContext(), Profile.class));
     }
 }

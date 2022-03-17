@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreen">
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,6 +25,15 @@
                 android:background="@drawable/ic_cover"
                 android:orientation="vertical"
                 android:paddingTop="30dp">
+
+                <ImageView
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_profiles"
+                    android:onClick="goProfile"/>
 
                 <ImageView
                     android:id="@+id/im"

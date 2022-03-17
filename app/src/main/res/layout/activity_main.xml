@@ -1,159 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/ku_logo"/>
 
-        <TextView
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bloodship"
-            android:textColor="@color/primary"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/desc"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/app_note_splash_screen"
-            android:textColor="@color/secondary"
-            android:textSize="15sp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll"
-        android:layout_margin="10dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:elevation="8dp"
-        android:orientation="horizontal"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="18dp"
-        app:cardUseCompatPadding="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_marginTop="15dp"
-                android:id="@+id/tname"
-                android:layout_width="match_parent"
+                android:id="@+id/gfg"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:padding="10dp"
-                android:text="SIGN IN"
-                android:textColor="@color/secondary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="@string/blood_group_eng"
+                android:textColor="@color/primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Spinner
+                android:id="@+id/fgf"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:outlineAmbientShadowColor="@color/primary"
+                android:outlineSpotShadowColor="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:targetApi="p" />
+
+            <TextView
+                android:id="@+id/discipline_spin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tname">
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:text="@string/discipline"
+                android:textColor="@color/primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <EditText
-                        android:id="@+id/signin_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/your_mail"
-                        android:textSize="17sp" />
-
-                    <EditText
-                        android:id="@+id/signin_pass"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:hint="@string/your_password"
-                        android:textSize="17sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_signin_left_bg"
-                        android:gravity="center"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:text="@string/forget_password"
-                        android:textSize="13sp"
-                        android:onClick="forgetPassword"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_signin_right"
-                        android:gravity="center"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="@string/next"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <Spinner
+                android:id="@+id/discipline_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/primary"
+        app:layout_constraintTop_toBottomOf="@id/spinner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--        <com.futuremind.recyclerviewfastscroll.FastScroller-->
+        <!--            android:id="@+id/fastscroll"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_alignParentRight="true"/>-->
+
+        <!--        <com.turingtechnologies.materialscrollbar.DragScrollBar-->
+        <!--            android:id="@+id/touchScrollBar"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            app:msb_recyclerView="@id/recView"-->
+        <!--            app:msb_lightOnTouch="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            app:msb_rightToLeft="false"/>-->
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
