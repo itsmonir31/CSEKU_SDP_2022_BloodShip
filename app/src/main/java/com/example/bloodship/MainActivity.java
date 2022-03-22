@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             URL_ = Urls.FETCH_USER_DATA + "&disc=" + disc;
         } else if (dropItem.compareTo("All") != 0 && disc.equals("All")) {
             bloodGroupText(dropItem);
-            URL_ = Urls.FETCH_USER_DATA + "&bg_=" + lett + "&sign=" + sign + "&disc=" + disc;
+            URL_ = Urls.FETCH_USER_DATA + "&bg_=" + lett + "&sign=" + sign;
         } else if (dropItem.compareTo("All") != 0 && disc.compareTo("All") != 0) {
 
             bloodGroupText(dropItem);
