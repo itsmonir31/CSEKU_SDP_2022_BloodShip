@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 public class mainAdapter extends RecyclerView.Adapter<mainAdapter.mainHolder> {
-//implements ICustomAdapter
+    //implements ICustomAdapter
     Context context;
     List<modelRV> dataList;
     String discipline;
@@ -48,72 +48,64 @@ public class mainAdapter extends RecyclerView.Adapter<mainAdapter.mainHolder> {
     public void onBindViewHolder(@NonNull mainHolder holder, int position) {
         modelRV model = dataList.get(position);
 
-        String url = Urls.USER_TYPE_FIND + email;
+        holder.name.setText(model.getName());
+        holder.discipline.setText(model.getDiscipline());
+        holder.bg.setText(model.getBloodGroup());
+        holder.mob.setText(model.getPhone());
+        holder.addr.setText(model.getAddress());
+        holder.lastDonate.setText(model.getLastDonate());
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
-
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("admin")){
-                    holder.name.setText(model.getName());
-                    holder.discipline.setText(model.getDiscipline());
-                    holder.bg.setText(model.getBloodGroup());
-                    holder.mob.setText(model.getPhone());
-                    holder.addr.setText("*****");
-                    holder.lastDonate.setText(" ");
-                    holder.lastDonate.setText("");
-                }else{
-                    holder.name.setText(model.getName());
-                    holder.discipline.setText(model.getDiscipline());
-                    holder.bg.setText(model.getBloodGroup());
-                    holder.mob.setText("*********");
-                    holder.addr.setText("*****");
-                    holder.lastDonate.setText(" ");
-                    holder.lastDonate.setText("");
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Server Problem!!", Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
-
-//                    map.put("email", email.getText().toString());
-//                    map.put("password", encrypt(password));
-
-                return map;
-            }
-
-        };
+        //for user specific
+//        String url = Urls.USER_TYPE_FIND + email;
 //
-        RequestQueue queue = Volley.newRequestQueue(context);
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+//
+//
+//            @Override
+//            public void onResponse(String response) {
+//                if (response.equals("admin")){
+//                    holder.name.setText(model.getName());
+//                    holder.discipline.setText(model.getDiscipline());
+//                    holder.bg.setText(model.getBloodGroup());
+//                    holder.mob.setText(model.getPhone());
+//                    holder.addr.setText("*****");
+//                    holder.lastDonate.setText(" ");
+//                    holder.lastDonate.setText("");
+//                }else{
+//                    holder.name.setText(model.getName());
+//                    holder.discipline.setText(model.getDiscipline());
+//                    holder.bg.setText(model.getBloodGroup());
+//                    holder.mob.setText("*********");
+//                    holder.addr.setText("*****");
+//                    holder.lastDonate.setText(" ");
+//                    holder.lastDonate.setText("");
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(context, "Server Problem!!", Toast.LENGTH_SHORT).show();
+//            }
+//        }) {
+//            @Nullable
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> map = new HashMap<String, String>();
+//
+////                    map.put("email", email.getText().toString());
+////                    map.put("password", encrypt(password));
+//
+//                return map;
+//            }
+//
+//        };
+////
+//        RequestQueue queue = Volley.newRequestQueue(context);
+//
+//        queue.add(stringRequest);
 
-        queue.add(stringRequest);
-
-//        if (usrType.equals("admin")) {
-//            holder.name.setText(model.getName());
-//            holder.discipline.setText(model.getDiscipline());
-//            holder.bg.setText(model.getBloodGroup());
-//            holder.mob.setText(model.getPhone());
-//            holder.addr.setText("*****");
-//            holder.lastDonate.setText(" ");
-//            holder.lastDonate.setText("");
-//        } else {
-//            holder.name.setText(model.getName());
-//            holder.discipline.setText(model.getDiscipline());
-//            holder.bg.setText(model.getBloodGroup());
-//            holder.mob.setText("*********");
-//            holder.addr.setText("*****");
-//            holder.lastDonate.setText(" ");
-//            holder.lastDonate.setText("");
-//        }
+        //for user specific end
 
 
         discipline = model.getDiscipline();
@@ -123,11 +115,6 @@ public class mainAdapter extends RecyclerView.Adapter<mainAdapter.mainHolder> {
     public int getItemCount() {
         return dataList.size();
     }
-
-//    @Override
-//    public String getCustomStringForElement(int element) {
-//        return discipline;
-//    }
 
     public class mainHolder extends RecyclerView.ViewHolder {
 
@@ -143,7 +130,7 @@ public class mainAdapter extends RecyclerView.Adapter<mainAdapter.mainHolder> {
             addr = (TextView) itemView.findViewById(R.id.bsdistrict);
             lastDonate = (TextView) itemView.findViewById(R.id.bslastDonate);
 
-            //update = (TextView) itemView.findViewById(R.id.updatebtn);
+//            update = (TextView) itemView.findViewById(R.id.updatebtn);
         }
     }
 }

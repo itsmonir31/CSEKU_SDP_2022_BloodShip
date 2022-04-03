@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,11 +152,10 @@ public class MainActivity extends AppCompatActivity {
 
                         String bg = object.getString("bg_cbdsb");
                         String discipline = object.getString("discipline");
-                        //String lastDonate = object.getString("bg_cbdsb");
-                        //String addr = object.getString("bg_cbdsb");
+                        String addr = object.getString("address");
                         String name = object.getString("name");
                         String mob = object.getString("phn");
-                        //String update = object.getString("bg_cbdsb");
+                        String lastDonate = object.getString("lastDate");
 
                         dis = discipline;
 
@@ -166,9 +166,11 @@ public class MainActivity extends AppCompatActivity {
                         data.setBloodGroup(bg);
                         data.setDiscipline(discipline);
                         data.setPhone(mob);
-                        data.setHomeDistrict("addr");
-                        data.setReqDate("update");
-                        data.setLastDonate("lastDonate");
+                        data.setAddress(addr);
+//                        data.setReqDate("update");
+
+//                        LocalDate date = new LocalDate(lastDonate);
+                        data.setLastDonate(lastDonate);
 
                         dataList_info.add(data);
 

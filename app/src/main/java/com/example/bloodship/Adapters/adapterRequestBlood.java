@@ -1,8 +1,11 @@
 package com.example.bloodship.Adapters;
 
+import static com.example.bloodship.R.string.bloodship;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +23,21 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodship.Models.modelBloodReq;
 import com.example.bloodship.R;
+import com.example.bloodship.RequestedBloodList;
 import com.example.bloodship.Urls;
 import com.example.bloodship.mainAdapter;
 import com.example.bloodship.modelRV;
+import com.example.bloodship.others.SharedPref;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,12 +68,12 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
     public void onBindViewHolder(@NonNull adapterRequestBlood.mainHolder holder, int position) {
         modelBloodReq model = dataList.get(position);
 
-        holder.ProblemTV.setText("Problem: "+model.getProblem());
-        holder.bgTV.setText("Blood Group: "+model.getBg());
-        holder.quantityTV.setText("Quantity: "+model.getQuantity());
-        holder.timeTV.setText("Time: "+model.getTime());
-        holder.dateTV.setText("Date: "+model.getDate());
-        holder.addressTV.setText("Address: "+model.getAddress());
+        holder.ProblemTV.setText("Problem: " + model.getProblem());
+        holder.bgTV.setText("Blood Group: " + model.getBg());
+        holder.quantityTV.setText("Quantity: " + model.getQuantity());
+        holder.timeTV.setText("Time: " + model.getTime());
+        holder.dateTV.setText("Date: " + model.getDate());
+        holder.addressTV.setText("Address: " + model.getAddress());
         holder.a_contactTV.setText(model.getA_contact());
         holder.r_contactTV.setText(model.getR_contact());
         holder.req_dateTV.setText(model.getReq_date());
@@ -92,62 +103,51 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
             }
         });
 
-
-//these for user specific
-//        String url = Urls.USER_TYPE_FIND + email;
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
-/*
+        holder.imInterested.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(String response) {
+            public void onClick(View v) {
+                String reqID = model.getReqID();
 
-//                if (response.equals("admin")) {
-//                    holder.name.setText(model.getName());
-//                    holder.discipline.setText(model.getDiscipline());
-//                    holder.bg.setText(model.getBloodGroup());
-//                    holder.mob.setText(model.getPhone());
-//                    holder.addr.setText("*****");
-//                    holder.lastDonate.setText(" ");
-//                    holder.lastDonate.setText("");
-//                } else {
-//                    holder.name.setText(model.getName());
-//                    holder.discipline.setText(model.getDiscipline());
-//                    holder.bg.setText(model.getBloodGroup());
-//                    holder.mob.setText("*********");
-//                    holder.addr.setText("*****");
-//                    holder.lastDonate.setText(" ");
-//                    holder.lastDonate.setText("");
-//                }
+                String s_ID = SharedPref.readSP(context, "s_id", "0");
 
+                //server works
+                String URL_ = Urls.ROOT_URL + "i_am_interested.php" + Urls.KEY + "&&s_id=" + s_ID+ "&reqID="+reqID;
+
+                JsonArrayRequest request = new JsonArrayRequest(URL_, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray array) {
+                        JSONObject object;
+//                        Log.d("json", array.toString());
+                        for (int i = 0; i <= array.length(); i++) {
+                            try {
+                                object = array.getJSONObject(i);
+
+                                String message = object.getString("response");
+
+//                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(holder.imInterested, message, Snackbar.LENGTH_LONG).show();
+//                                Snackbar.make(context, message, Snackbar.LENGTH_LONG)
+//                                        .show();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
+                //server works end
+
+//                Toast.makeText(context, reqID + "--" + s_ID + "", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Server Problem!!", Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
+        });
 
-//                    map.put("email", email.getText().toString());
-//                    map.put("password", encrypt(password));
-
-                return map;
-            }
-
-        };
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-
-        queue.add(stringRequest);
-
-        discipline = model.getDiscipline();
-
-
- */
     }
 
     @Override
@@ -157,6 +157,7 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
 
     public class mainHolder extends RecyclerView.ViewHolder {
         private ImageView copyBTN;
+        Button imInterested;
         private TextView ProblemTV, bgTV, quantityTV, timeTV, dateTV, addressTV, a_contactTV, r_contactTV, req_dateTV;
 
         public mainHolder(@NonNull View itemView) {
@@ -173,6 +174,7 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
             req_dateTV = (TextView) itemView.findViewById(R.id.reqDateTV);
 
             copyBTN = itemView.findViewById(R.id.copy_btn);
+            imInterested = itemView.findViewById(R.id.imInterested);
 
             //update = (TextView) itemView.findViewById(R.id.updatebtn);
         }

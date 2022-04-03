@@ -1,14 +1,14 @@
 package com.example.bloodship;
 
 public class modelRV {
-    String bloodGroup, discipline, lastDonate, homeDistrict, name, phone, reqDate;
+    String bloodGroup, discipline, lastDonate, homeDistrict, name, phone, reqDate, address;
 
     //int id;
     public modelRV(){
 
     }
 
-    public modelRV(String bloodGroup, String discipline, String homeDistrict, String lastDonate, String name, String phone, String reqDate) {
+    public modelRV(String bloodGroup, String discipline, String homeDistrict, String lastDonate, String name, String phone, String reqDate, String address) {
         this.bloodGroup = bloodGroup;
         this.discipline = discipline;
         this.homeDistrict = homeDistrict;
@@ -16,6 +16,15 @@ public class modelRV {
         this.name = name;
         this.phone = phone;
         this.reqDate = reqDate;
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getBloodGroup() {

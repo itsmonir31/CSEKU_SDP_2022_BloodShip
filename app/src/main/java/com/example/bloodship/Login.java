@@ -105,6 +105,11 @@ public class Login extends AppCompatActivity {
         }
     }
 
+
+    public void loginFuncSQl_(){
+
+    }
+
     public void loginFuncSQl() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.ROOT_URL+"login.php"+Urls.KEY, new Response.Listener<String>() {
             @Override
@@ -112,8 +117,8 @@ public class Login extends AppCompatActivity {
                 email.getText().clear();
                 password.getText().clear();
 
-                if (response.equals("success")) {
-                    Toast.makeText(getApplicationContext(), "Login Successfull!", Toast.LENGTH_LONG).show();
+                if (response != null && response.length() >= 5) {
+                    Toast.makeText(getApplicationContext(), "Login Successfull! "+response, Toast.LENGTH_LONG).show();
 
                     //shared-preference
 //                    SharedPreferences sp = getSharedPreferences("credentials", MODE_PRIVATE);
@@ -122,6 +127,7 @@ public class Login extends AppCompatActivity {
 //                    editor.putString("pass", password.getText().toString());
 //                    editor.commit();
                     SharedPref.saveSP(getApplicationContext(), "session", "true");
+                    SharedPref.saveSP(getApplicationContext(), "s_id", response);
                     //SP end
 
                     rprogress.setVisibility(View.INVISIBLE);

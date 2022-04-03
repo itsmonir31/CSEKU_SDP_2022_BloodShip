@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodship.others.SharedPref;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -163,7 +164,9 @@ public class RequestBlood extends AppCompatActivity {
                             reqData.put("addrs", addrs.getText().toString());
                             reqData.put("aContact", "+88" + aContact.getText().toString());
                             reqData.put("rContact", "+88" + rContact.getText().toString());
-                            reqData.put("s_id", "190231");
+
+                            String s_ID = SharedPref.readSP(getApplicationContext(), "s_id", "0");
+                            reqData.put("s_id", s_ID);
 
                             return reqData;
                         }

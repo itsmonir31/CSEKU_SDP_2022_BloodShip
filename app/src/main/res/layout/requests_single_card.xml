@@ -157,7 +157,7 @@
                         android:id="@+id/copy_btn"
                         android:paddingEnd="15dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="25dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_copy" />
@@ -165,11 +165,13 @@
 
 
                     <Button
+                        android:id="@+id/imInterested"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:text="I'm Interested"
-                        android:textSize="10sp"/>
+                        android:textSize="10sp"
+                        android:textColor="@color/white"/>
 
 
 

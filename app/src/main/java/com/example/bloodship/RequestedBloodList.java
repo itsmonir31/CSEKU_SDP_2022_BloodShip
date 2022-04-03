@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -74,6 +75,7 @@ public class RequestedBloodList extends AppCompatActivity {
                         String a_contact = object.getString("a_contact");
                         String r_contact = object.getString("r_contact");
                         String req_date = object.getString("req_date");
+                        String reqID = object.getString("reqID");
 
                         //Toast.makeText(getApplicationContext(), name+bg+discipline+mob, Toast.LENGTH_SHORT).show();
 
@@ -87,6 +89,7 @@ public class RequestedBloodList extends AppCompatActivity {
                         data.setA_contact(a_contact);
                         data.setR_contact(r_contact);
                         data.setReq_date(req_date);
+                        data.setReqID(reqID);
 
                         requestList_info.add(data);
 
@@ -96,20 +99,9 @@ public class RequestedBloodList extends AppCompatActivity {
                     }
                 }
 
-//                UserFind uf = new UserFind(getApplicationContext());
-//                userType = uf.USER_find();
-//                Toast.makeText(getApplicationContext(), "main activity: " + userType, Toast.LENGTH_SHORT).show();
-//
-//                adapterReqBlood = new adapterRequestBlood(RequestedBloodList.this, requestList_info, "dfh@sdfgsd.bpm");
                 adapterReqBlood = new adapterRequestBlood(RequestedBloodList.this, requestList_info);
                 recyclerView.setAdapter(adapterReqBlood);
 
-
-                //dataList_info.clear();
-//                while(object.length()>0)
-//                    object.remove(object.keys().next());
-
-//                scrollBar.setIndicator(new CustomIndicator(MainActivity.this), true);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -120,4 +112,5 @@ public class RequestedBloodList extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(RequestedBloodList.this);
         requestQueue.add(request);
     }
+
 }

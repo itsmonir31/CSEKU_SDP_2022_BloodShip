@@ -1,14 +1,32 @@
 package com.example.bloodship.Models;
 
-public class modelBloodReq {
-    String Problem, bg, quantity, time, date, address, a_contact, r_contact, req_date, reqID;
+public class NestedParentModel {
+    String Problem;
+    String bg;
+    String quantity;
+    String time;
+    String date;
+    String address;
+    String a_contact;
+    String r_contact;
+    String req_date;
 
-    public modelBloodReq(){
+    public String getReqID() {
+        return reqID;
+    }
+
+    public void setReqID(String reqID) {
+        this.reqID = reqID;
+    }
+
+    String reqID;
+
+    public NestedParentModel(){
 
     }
 
-    public modelBloodReq(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID) {
-        this.Problem = problem;
+    public NestedParentModel(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID) {
+        Problem = problem;
         this.bg = bg;
         this.quantity = quantity;
         this.time = time;
@@ -17,14 +35,6 @@ public class modelBloodReq {
         this.a_contact = a_contact;
         this.r_contact = r_contact;
         this.req_date = req_date;
-        this.reqID = reqID;
-    }
-
-    public String getReqID() {
-        return reqID;
-    }
-
-    public void setReqID(String reqID) {
         this.reqID = reqID;
     }
 

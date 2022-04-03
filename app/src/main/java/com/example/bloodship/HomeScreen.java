@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.bloodship.others.SharedPref;
+
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
 
     CardView cvbloodSearch, cvbloodRequest, cvbloodRequested, cvourPride, cvBloodteam, cvaboutClub;
@@ -72,6 +74,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     }
 
     public void goProfile(View view) {
-        startActivity(new Intent(getApplicationContext(), Profile.class));
+        if (Boolean.valueOf(SharedPref.readSP(getApplicationContext(), "session", "false"))){
+            startActivity(new Intent(getApplicationContext(), Profile.class));
+        }else{
+            startActivity(new Intent(getApplicationContext(), Login.class));
+        }
+
+
     }
 }
