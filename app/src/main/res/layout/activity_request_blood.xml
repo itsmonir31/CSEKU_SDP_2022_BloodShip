@@ -50,18 +50,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ted" />
 
-    <EditText
-        android:backgroundTint="@color/secondary"
-        android:textColor="@color/secondary"
-        android:id="@+id/ETbg"
-        android:layout_width="0dp"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/blood_group"
+        android:orientation="horizontal"
+        android:id="@+id/ETbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ETproblem" />
+        app:layout_constraintTop_toBottomOf="@+id/ETproblem">
+
+        <TextView
+            android:id="@+id/bgTVreq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/secondary"
+            android:hint="@string/blood_group_"
+            android:inputType="none"
+            android:textColor="@color/secondary"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/bg_spinner_requestPost"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
 
     <EditText
         android:backgroundTint="@color/secondary"
@@ -70,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:hint="@string/quantity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

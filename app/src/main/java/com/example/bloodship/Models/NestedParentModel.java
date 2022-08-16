@@ -9,7 +9,7 @@ public class NestedParentModel {
     String address;
     String a_contact;
     String r_contact;
-    String req_date;
+    String req_date, need, managed, othersM;
 
     public String getReqID() {
         return reqID;
@@ -25,7 +25,7 @@ public class NestedParentModel {
 
     }
 
-    public NestedParentModel(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID) {
+    public NestedParentModel(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID, String need, String Managed, String othersM) {
         Problem = problem;
         this.bg = bg;
         this.quantity = quantity;
@@ -36,6 +36,9 @@ public class NestedParentModel {
         this.r_contact = r_contact;
         this.req_date = req_date;
         this.reqID = reqID;
+        this.need = need;
+        this.managed = managed;
+        this.othersM = othersM;
     }
 
     public String getProblem() {
@@ -108,5 +111,29 @@ public class NestedParentModel {
 
     public void setReq_date(String req_date) {
         this.req_date = req_date;
+    }
+
+    public String getNeed() {
+        return need;
+    }
+
+    public void setNeed(String need) {
+        this.need = need;
+    }
+
+    public String getManaged() {
+        return managed;
+    }
+
+    public void setManaged(String managed) {
+        this.managed = managed;
+    }
+
+    public String getOthersM() {
+        return othersM;
+    }
+
+    public void setOthersM(String othersM) {
+        this.othersM = othersM;
     }
 }

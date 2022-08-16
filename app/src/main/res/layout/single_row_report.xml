@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+<!--    <TableRow-->
+<!--        android:background="#0079D6"-->
+<!--        android:padding="5dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="UserId" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="User Name" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Location" />-->
+<!--    </TableRow>-->
+
+    <TableRow
+        android:background="#DAE8FC"
+        android:padding="5dp"
+        android:shrinkColumns="flase"
+        android:stretchColumns="false">
+
+        <TextView
+            android:gravity="center"
+            android:singleLine="false"
+            android:id="@+id/dateR"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:text="date" />
+
+        <TextView
+            android:gravity="center"
+            android:lines="2"
+            android:id="@+id/nameR"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:text="Name" />
+
+        <TextView
+            android:gravity="center"
+            android:lines="2"
+            android:id="@+id/bgR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:text="Blood Group" />
+
+        <TextView
+            android:lines="2"
+            android:gravity="center"
+            android:id="@+id/totalR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:text="5" />
+
+        <TextView
+            android:lines="2"
+            android:gravity="center"
+            android:id="@+id/managedR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:text="6" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+<!--            <TextView-->
+<!--                android:layout_gravity="center"-->
+<!--                android:id="@+id/viewR"-->
+<!--                android:paddingLeft="5dp"-->
+<!--                android:paddingRight="5dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textStyle="italic"-->
+<!--                android:textSize="12sp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/managed_bg"-->
+<!--                android:text="view" />-->
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"/>
+            <TextView
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/repostR"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/white"
+                android:textStyle="italic"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/need_more"
+                android:text="repost"
+                android:onClick="Repost"/>
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/blueishText"
+        android:background="@color/blueishText"/>
+
+
+</TableLayout>

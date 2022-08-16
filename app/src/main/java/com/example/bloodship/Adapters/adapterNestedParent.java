@@ -47,6 +47,9 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
     adapterNestedChild adapterNestedChild;
 
     adapterNestedChild childAdapter;
+    String reqid;
+    int othersTrack;
+    private TextView tvqntty;
 
     private RecyclerView.RecycledViewPool
             viewPool
@@ -75,19 +78,68 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
         holder.nrv_reqAt.setText("Requested at: " + model.getReq_date());
         holder.nrv_ProblemTV.setText("Problem: " + model.getProblem());
         holder.nrv_bgTV.setText("Blood Group: " + model.getBg());
-        holder.nrv_quantityTV.setText("Quantity: " + model.getQuantity());
+        holder.nrv_quantityTV.setText("Total Requested: " + model.getQuantity() + " bag(s)");
         holder.nrv_timeTV.setText("Time: " + model.getTime());
         holder.nrv_dateTV.setText("Date: " + model.getDate());
         holder.nrv_addressTV.setText("Address: " + model.getAddress());
         holder.nrv_a_contactTV.setText(model.getA_contact());
         holder.nrv_r_contactTV.setText(model.getR_contact());
+        holder.needMy.setText("Need " + model.getNeed() + " more bag(s)");
+//        int othersTrack = Integer.valueOf(model.getOthersM());
+        holder.managedMy.setText("Managed by APP: " + model.getManaged() + " bag(s)");
+        holder.othersManageTV.setText("From Other Sources: " + model.getOthersM() + " bag(s)");
+
+
+        tvqntty = holder.nrv_quantityTV;
+        reqid = model.getReqID();
+        childAdapter = new adapterNestedChild(context, childData_list, model.getReqID());
+
+
+        int othersTrack = Integer.valueOf(model.getOthersM());
+
+        holder.downArrow.setOnClickListener(new View.OnClickListener() {
+
+            int qntty = Integer.parseInt(model.getQuantity());
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, othersTrack+"xc", Toast.LENGTH_LONG).show();
+//                qntty = qntty+1;
+
+//                if (othersTrack == 0){
+//                    qntty++;
+//                    bgManaged(model.getReqID(), number, 2, qntty);
+//                    holder.nrv_quantityTV.setText("Total Requested: "+ (qntty+1) + " bag(s)");
+//                    holder.needMy.setText("Need " + (qntty+1) + " more bag(s)");
+//                }else{
+//                    qntty++;
+                    bgManaged(model.getReqID(), number, 1, qntty);
+//                    holder.nrv_quantityTV.setText("Total Requested: "+ (qntty+1) + " bag(s)");
+                    holder.needMy.setText("Need " + (qntty+1) + " more bag(s)");
+//                }
+//                othersTrack--;
+                context.recreate();
+            }
+        });
+
+        holder.upArrow.setOnClickListener(new View.OnClickListener() {
+            int qntty = Integer.parseInt(model.getQuantity());
+            @Override
+            public void onClick(View v) {
+                qntty--;
+                bgManaged(model.getReqID(), number, 0, qntty);
+//                qntty = qntty-1;
+                holder.needMy.setText("Need " + (qntty-1) + " more bag(s)");
+//                holder.nrv_quantityTV.setText("Total Requested: "+ (qntty-1) + " bag(s)");
+                context.recreate();
+            }
+        });
 
         holder.RemoveRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                        .setTitle("Delete Request")
-                        .setMessage("Are you sure want to delete!?")
+                        .setTitle("Archive Request")
+                        .setMessage("Are you sure want to Archive!?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -144,6 +196,8 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
                         String discipline = object1.getString("discipline");
                         String studentID = object1.getString("s_id");
                         String phone = object1.getString("phone");
+                        String check = object1.getString("checkD");
+                        Log.d("check", check);
 
                         NestedChildModel data = new NestedChildModel();
 
@@ -152,6 +206,8 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
                         data.setDiscipline(discipline);
                         data.setBloodGroup(bg);
                         data.setPhone(phone);
+                        data.setCheckDonate(check);
+                        data.setReqID(reqid);
 
                         childData_list.add(data);
 
@@ -160,9 +216,10 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
                         e.printStackTrace();
                     }
                 }
+                Log.d("reqID-----", model.getReqID());
 //                Log.d("zzzz",parentData_list.size()+"-----"+childData_list.size());
 //            adapterNestedChild adapterNestedChild__ = new adapterNestedChild(context, childData_list);
-                childAdapter = new adapterNestedChild(context, childData_list);
+                childAdapter = new adapterNestedChild(context, childData_list, model.getReqID());
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                 holder.childRV.setLayoutManager(linearLayoutManager);
                 holder.childRV.setAdapter(childAdapter);
@@ -179,7 +236,7 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(request);
 
-        Log.d("balsa", childData_list.size()+"") ;
+        Log.d("balsa", childData_list.size() + "");
         //test end
 
 
@@ -211,8 +268,9 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        private TextView RemoveRequest, nrv_reqAt, nrv_ProblemTV, nrv_bgTV, nrv_quantityTV, nrv_timeTV, nrv_dateTV, nrv_addressTV, nrv_a_contactTV, nrv_r_contactTV, nrv_req_dateTV;
+        private TextView RemoveRequest, nrv_reqAt, nrv_ProblemTV, nrv_bgTV, nrv_quantityTV, nrv_timeTV, nrv_dateTV, nrv_addressTV, nrv_a_contactTV, nrv_r_contactTV, nrv_req_dateTV, needMy, managedMy, othersManageTV;
         RecyclerView childRV;
+        private ImageView upArrow, downArrow;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -226,14 +284,83 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
             nrv_addressTV = (TextView) itemView.findViewById(R.id.nrv_addressTV);
             nrv_a_contactTV = (TextView) itemView.findViewById(R.id.nrv_a_contactTV);
             nrv_r_contactTV = (TextView) itemView.findViewById(R.id.nrv_r_contactTV);
+            needMy = (TextView) itemView.findViewById(R.id.needMoreTVmy);
+            managedMy = (TextView) itemView.findViewById(R.id.managedTVmy);
+            othersManageTV = (TextView) itemView.findViewById(R.id.nrv_otherManagedTVM);
+
+
 
             RemoveRequest = (TextView) itemView.findViewById(R.id.RemoveRequest);
 
             childRV = (RecyclerView) itemView.findViewById(R.id.childRecyclerView);
 
+            upArrow = itemView.findViewById(R.id.arrowUp);
+            downArrow = itemView.findViewById(R.id.arrowDown
+            );
+
         }
     }
 
+    public void bgManaged(String reqID, int position, int valPlusMinus, int quantt_) {
+        final int quantt = quantt_;
+
+        String URL_ = Urls.ROOT_URL + "bgManaged.php" + Urls.KEY + "&reqID=" + reqID + "&val=" + valPlusMinus;
+        Log.d("ter", URL_);
+
+        JsonArrayRequest request = new JsonArrayRequest(URL_, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray array) {
+                JSONObject object1;
+
+                for (int i = 0; i <= array.length(); i++) {
+                    try {
+
+                        object1 = array.getJSONObject(i);
+
+                        String msg = object1.getString("response");
+                        if (msg.equals("0")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                                    .setTitle("Archive Request")
+                                    .setMessage("Are you sure want to Archive?")
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            remove(reqID, position);
+                                        }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            bgManaged(reqID, position, 1, quantt);
+//                                            quantt++;
+                                            context.recreate();
+                                        }
+                                    });
+
+                            builder.show();
+                        } else if (msg.equals("fail")) {
+                            Toast.makeText(context, "Server problem!!!", Toast.LENGTH_SHORT).show();
+                        }else if (Integer.parseInt(msg) > 0) {
+                            Toast.makeText(context, "Blood Quantity Updated", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(request);
+    }
 
     public void remove(String reqID, int position) {
 
@@ -324,7 +451,7 @@ public class adapterNestedParent extends RecyclerView.Adapter<adapterNestedParen
             }
 
             //                Log.d("zzzz",parentData_list.size()+"-----"+childData_list.size());
-            adapterNestedChild adapterNestedChild = new adapterNestedChild(context, childData_list);
+            adapterNestedChild adapterNestedChild = new adapterNestedChild(context, childData_list, reqid);
 
 
         }, new Response.ErrorListener() {

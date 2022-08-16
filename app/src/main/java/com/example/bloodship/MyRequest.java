@@ -88,6 +88,10 @@ public class MyRequest extends AppCompatActivity {
                         String r_contact = object.getString("r_contact");
                         String req_date = object.getString("req_date");
 
+                        String others = object.getString("managed_others");
+                        String managed = object.getString("managed_app");
+
+                        int calc = Integer.valueOf(quantity) - (Integer.valueOf(others) + Integer.valueOf(managed));
                         requestID = object.getString("request_id");
 
                         //Toast.makeText(getApplicationContext(), name+bg+discipline+mob, Toast.LENGTH_SHORT).show();
@@ -103,6 +107,9 @@ public class MyRequest extends AppCompatActivity {
                         data.setR_contact(r_contact);
                         data.setReq_date(req_date);
                         data.setReqID(requestID);
+                        data.setManaged(managed);
+                        data.setNeed(Integer.toString(calc));
+                        data.setOthersM(others);
 
                         parentData_list.add(data);
 

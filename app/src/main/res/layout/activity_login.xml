@@ -66,7 +66,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_marginTop="15dp"
@@ -86,7 +86,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,37 +98,87 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <EditText
-                        android:id="@+id/signin_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/your_mail"
-                        android:textSize="17sp" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/signin_email"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="@string/your_mail"-->
+<!--                        android:textSize="17sp" />-->
 
-                    <EditText
-                        android:id="@+id/signin_pass"
+<!--                    <EditText-->
+<!--                        android:id="@+id/signin_pass"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:inputType="numberPassword"-->
+<!--                        android:hint="@string/your_password"-->
+<!--                        android:textSize="17sp" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:hint="@string/your_password"
-                        android:textSize="17sp" />
+                        android:layout_height="match_parent"
+                        android:textColorHint="#B9B8B8"
+                        app:passwordToggleEnabled="false">
+
+                        <EditText
+                            android:id="@+id/signin_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:backgroundTint="@color/white"
+                            android:inputType=""
+                            android:padding="16dp"
+                            android:textSize="18sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColorHint="#B9B8B8"
+                        app:passwordToggleEnabled="true">
+
+                        <EditText
+                            android:id="@+id/signin_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Password"
+                            android:backgroundTint="@color/white"
+                            android:inputType="textPassword"
+                            android:padding="16dp"
+                            android:textSize="18sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:layout_gravity="center"
                         android:id="@+id/lprogress"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
                         android:visibility="invisible"
-                        app:layout_constraintBottom_toTopOf="@+id/lemail"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.753"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
                         app:lottie_rawRes="@raw/loading_big" />
-                </LinearLayout>
+
+                    <CheckBox
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/checkBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Admin" />
+                </RelativeLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -164,6 +213,7 @@
                         android:textSize="13sp"
                         android:onClick="tryLogin"/>
                 </LinearLayout>
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,8 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="15dp"
@@ -55,7 +54,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="REMOVE"
+                            android:text="ARCHIVE"
                             android:textColor="@color/secondary"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -78,9 +77,9 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:weightSum="10">
 
                         <TextView
@@ -110,27 +109,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="8"
                             android:text="Blood Group: "
-                            android:textColor="@color/white"
-                            android:textSize="17sp" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="2"
-                            android:src="@drawable/ic_edit" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:id="@+id/nrv_quantityTV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="8"
-                            android:text="Quantity: "
                             android:textColor="@color/white"
                             android:textSize="17sp" />
 
@@ -197,19 +175,122 @@
                             android:textColor="@color/white"
                             android:textSize="17sp" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="2"
-                            android:src="@drawable/ic_edit" />
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="20dp"-->
+                        <!--                            android:layout_height="20dp"-->
+                        <!--                            android:layout_weight="2"-->
+                        <!--                            android:src="@drawable/ic_edit" />-->
                     </LinearLayout>
 
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="10">
 
+                        <TextView
+                            android:id="@+id/nrv_quantityTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="Total Requested: "
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+
+                        <ImageView
+                            android:id="@+id/totalDown"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_arrow_down" />
+
+                        <ImageView
+                            android:id="@+id/totalUp"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_arrow_up"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:id="@+id/nrv_otherManagedTVM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:gravity="bottom"
+                            android:layout_gravity="bottom"
+                            android:text="From Other Sources: "
+                            android:textColor="#756666"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/arrowDown"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_arrow_down"
+                            app:tint="#756666" />
+
+                        <ImageView
+                            android:id="@+id/arrowUp"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_arrow_up"
+                            app:tint="#756666" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/needMoreTVmy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/need_more"
+                        android:elevation="7dp"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:text="Need "
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/managedTVmy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/managed_bg"
+                        android:elevation="7dp"
+                        android:padding="5dp"
+                        android:paddingStart="10dp"
+                        android:text="Managed by App: "
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
                 <View
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="@color/white" />

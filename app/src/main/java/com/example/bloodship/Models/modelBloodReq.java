@@ -1,13 +1,13 @@
 package com.example.bloodship.Models;
 
 public class modelBloodReq {
-    String Problem, bg, quantity, time, date, address, a_contact, r_contact, req_date, reqID;
+    String Problem, bg, quantity, time, date, address, a_contact, r_contact, req_date, reqID, need, managed;
 
     public modelBloodReq(){
 
     }
 
-    public modelBloodReq(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID) {
+    public modelBloodReq(String problem, String bg, String quantity, String time, String date, String address, String a_contact, String r_contact, String req_date, String reqID, String need, String managed) {
         this.Problem = problem;
         this.bg = bg;
         this.quantity = quantity;
@@ -18,6 +18,8 @@ public class modelBloodReq {
         this.r_contact = r_contact;
         this.req_date = req_date;
         this.reqID = reqID;
+        this.need = reqID;
+        this.managed = reqID;
     }
 
     public String getReqID() {
@@ -98,5 +100,21 @@ public class modelBloodReq {
 
     public void setReq_date(String req_date) {
         this.req_date = req_date;
+    }
+
+    public String getNeed() {
+        return need;
+    }
+
+    public void setNeed(String need) {
+        this.need = need;
+    }
+
+    public String getManaged() {
+        return managed;
+    }
+
+    public void setManaged(String managed) {
+        this.managed = managed;
     }
 }

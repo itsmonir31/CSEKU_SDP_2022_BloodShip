@@ -1,5 +1,7 @@
 package com.example.bloodship;
 
+import static com.example.bloodship.others.SharedPref.readSP;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,7 +70,13 @@ public class Profile extends AppCompatActivity {
         profileImg = findViewById(R.id.profImgV);
 
 
-        loadData();
+        Boolean isA =  Boolean.valueOf(SharedPref.readSP(getApplicationContext(), "isA", "false"));
+        if (isA){
+            loadData("fetch_admin_profile.php", isA);
+        }else {
+            loadData("fetch_profile.php", false);
+        }
+
 
 
     }
@@ -79,6 +87,7 @@ public class Profile extends AppCompatActivity {
 
     public void tryLogout(View view) {
         SharedPref.saveSP(getApplicationContext(), "session", "false");
+        SharedPref.saveSP(getApplicationContext(), "isA", "false");
 //        Toast.makeText(getApplicationContext(), "Successfully Logout", Toast.LENGTH_SHORT).show();
         Snackbar.make(view, "Successfully Logout", Snackbar.LENGTH_LONG).show();
 
@@ -86,10 +95,10 @@ public class Profile extends AppCompatActivity {
         finish();
     }
 
-    public void loadData() {
-        s__ID = SharedPref.readSP(getApplicationContext(), "s_id", "0");
+    public void loadData(String url, Boolean isA) {
+        s__ID = readSP(getApplicationContext(), "s_id", "0");
 
-        String URL_ = Urls.ROOT_URL + "fetch_profile.php" + Urls.KEY + "&s_id=" + s__ID;
+        String URL_ = Urls.ROOT_URL + url + Urls.KEY + "&s_id=" + s__ID;
         Log.d("ursl", URL_);
         JsonArrayRequest request = new JsonArrayRequest(URL_, new Response.Listener<JSONArray>() {
             @Override
@@ -99,18 +108,46 @@ public class Profile extends AppCompatActivity {
                 for (int i = 0; i <= array.length(); i++) {
                     try {
                         object = array.getJSONObject(i);
+                        String imgURL = object.getString("img_url");
 
-                        bg.setText(object.getString("bg_cbdsb"));
-                        discipline.setText(object.getString("discipline"));
-                        name.setText(object.getString("name"));
-                        mobile.setText(object.getString("phn"));
-                        sID.setText(object.getString("s_id"));
-                        lastDonate.setText(object.getString("last_date"));
+                        if(isA){
+                            bg.setText(object.getString("bg"));
+                            name.setText(object.getString("name"));
+                            mobile.setText(object.getString("phn"));
+
+                            discipline.setVisibility(View.GONE);
+                            findViewById(R.id.stHide).setVisibility(View.GONE);
+                            findViewById(R.id.disciplineHide).setVisibility(View.GONE);
+                            findViewById(R.id.ageHide).setVisibility(View.GONE);
+                            findViewById(R.id.lastDHide).setVisibility(View.GONE);
+                            findViewById(R.id.statusHide).setVisibility(View.GONE);
+                            findViewById(R.id.editLastD).setVisibility(View.GONE);
+                            sID.setVisibility(View.GONE);
+                            lastDonate.setVisibility(View.GONE);
+
+                            Picasso.get()
+                                    .load(imgURL)
+                                    .resize(100, 100)
+                                    .centerCrop()
+                                    .into(profileImg);
+                        }else{
+                            bg.setText(object.getString("bg_cbdsb"));
+                            discipline.setText(object.getString("discipline"));
+                            name.setText(object.getString("name"));
+                            mobile.setText(object.getString("phn"));
+                            sID.setText(object.getString("s_id"));
+                            lastDonate.setText(object.getString("last_date"));
+
+                            Picasso.get()
+                                    .load(imgURL)
+                                    .resize(100, 100)
+                                    .centerCrop()
+                                    .into(profileImg);
+                        }
+
 
                         String dob = object.getString("dob");
                         String lastDonate = object.getString("last_date");
-
-                        String imgURL = object.getString("img_url");
 
                         //Age Calculation
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -138,11 +175,6 @@ public class Profile extends AppCompatActivity {
                             status.setTextColor(Color.RED);
                         }
 
-                        Picasso.get()
-                                .load(imgURL)
-                                .resize(100, 100)
-                                .centerCrop()
-                                .into(profileImg);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -214,7 +246,7 @@ public class Profile extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(), "Date Updated Successfully!", Toast.LENGTH_LONG).show();
                     Snackbar.make(lastDonate, "Date Updated Successfully!", Snackbar.LENGTH_LONG).show();
 
-                    loadData();
+//                    loadData();
                 } else if (response.equals("fail")) {
                     progressBar.setVisibility(View.INVISIBLE);
 //                    Toast.makeText(getApplicationContext(), "Date Updated Failed!!! :(", Toast.LENGTH_SHORT).show();
@@ -244,5 +276,10 @@ public class Profile extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
+    }
+
+    public void myDonationDir(View view) {
+        startActivity(new Intent(getApplicationContext(), Report.class));
+//        finish();
     }
 }

@@ -52,8 +52,8 @@ public class RequestedBloodList extends AppCompatActivity {
 //        recyclerView.setAdapter(adapterReqBlood);
     }
 
-    private void LoadAllRequests( ) {
-        String URL_ = Urls.ROOT_URL+"fetch_requests.php"+Urls.KEY;
+    private void LoadAllRequests() {
+        String URL_ = Urls.ROOT_URL + "fetch_requests.php" + Urls.KEY;
 //        requestList_info.clear(); //clear the previous data
 
 
@@ -69,6 +69,8 @@ public class RequestedBloodList extends AppCompatActivity {
                         String Problem = object.getString("problem");
                         String bg = object.getString("bg_cbdsb");
                         String quantity = object.getString("quantity");
+                        String others = object.getString("managed_others");
+                        String managed = object.getString("managed_app");
                         String time = object.getString("time");
                         String date = object.getString("date");
                         String address = object.getString("address");
@@ -78,6 +80,7 @@ public class RequestedBloodList extends AppCompatActivity {
                         String reqID = object.getString("reqID");
 
                         //Toast.makeText(getApplicationContext(), name+bg+discipline+mob, Toast.LENGTH_SHORT).show();
+                        int calc = Integer.valueOf(quantity) - (Integer.valueOf(others) + Integer.valueOf(managed));
 
                         modelBloodReq data = new modelBloodReq();
                         data.setProblem(Problem);
@@ -90,6 +93,8 @@ public class RequestedBloodList extends AppCompatActivity {
                         data.setR_contact(r_contact);
                         data.setReq_date(req_date);
                         data.setReqID(reqID);
+                        data.setManaged(managed);
+                        data.setNeed(Integer.toString(calc));
 
                         requestList_info.add(data);
 

@@ -2,9 +2,11 @@ package com.example.bloodship.Adapters;
 
 import static com.example.bloodship.R.string.bloodship;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,17 +69,44 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
     @Override
     public void onBindViewHolder(@NonNull adapterRequestBlood.mainHolder holder, int position) {
         modelBloodReq model = dataList.get(position);
+        int number = position;
 
         holder.ProblemTV.setText("Problem: " + model.getProblem());
         holder.bgTV.setText("Blood Group: " + model.getBg());
-        holder.quantityTV.setText("Quantity: " + model.getQuantity());
         holder.timeTV.setText("Time: " + model.getTime());
         holder.dateTV.setText("Date: " + model.getDate());
         holder.addressTV.setText("Address: " + model.getAddress());
         holder.a_contactTV.setText(model.getA_contact());
         holder.r_contactTV.setText(model.getR_contact());
-        holder.req_dateTV.setText(model.getReq_date());
+        holder.req_dateTV.setText( "Requested at: "+model.getReq_date());
 
+        holder.quantityTV.setText("Total Requested: " + model.getQuantity());
+        holder.need.setText("Need "+model.getNeed() +" more bag(s)");
+        holder.managhed_app.setText("Managed by APP: "+model.getManaged() + " bag(s)");
+
+
+        holder.RemoveRequestA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                        .setTitle("Delete Request")
+                        .setMessage("Are you sure want to delete!?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                remove(model.getReqID(), number);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                builder.show();
+            }
+        });
 
         holder.copyBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +140,7 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
                 String s_ID = SharedPref.readSP(context, "s_id", "0");
 
                 //server works
-                String URL_ = Urls.ROOT_URL + "i_am_interested.php" + Urls.KEY + "&&s_id=" + s_ID+ "&reqID="+reqID;
+                String URL_ = Urls.ROOT_URL + "i_am_interested.php" + Urls.KEY + "&&s_id=" + s_ID + "&reqID=" + reqID;
 
                 JsonArrayRequest request = new JsonArrayRequest(URL_, new Response.Listener<JSONArray>() {
                     @Override
@@ -158,7 +187,7 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
     public class mainHolder extends RecyclerView.ViewHolder {
         private ImageView copyBTN;
         Button imInterested;
-        private TextView ProblemTV, bgTV, quantityTV, timeTV, dateTV, addressTV, a_contactTV, r_contactTV, req_dateTV;
+        private TextView ProblemTV, bgTV, quantityTV, timeTV, dateTV, addressTV, a_contactTV, r_contactTV, req_dateTV, RemoveRequestA, need, managhed_app;
 
         public mainHolder(@NonNull View itemView) {
             super(itemView);
@@ -171,12 +200,59 @@ public class adapterRequestBlood extends RecyclerView.Adapter<adapterRequestBloo
             addressTV = (TextView) itemView.findViewById(R.id.addressTV);
             a_contactTV = (TextView) itemView.findViewById(R.id.a_contactTV);
             r_contactTV = (TextView) itemView.findViewById(R.id.r_contactTV);
-            req_dateTV = (TextView) itemView.findViewById(R.id.reqDateTV);
+            req_dateTV = (TextView) itemView.findViewById(R.id.reqDateTVA);
+            managhed_app = (TextView) itemView.findViewById(R.id.managedTV);
+            need = (TextView) itemView.findViewById(R.id.needMoreTV);
 
             copyBTN = itemView.findViewById(R.id.copy_btn);
             imInterested = itemView.findViewById(R.id.imInterested);
 
+            RemoveRequestA = itemView.findViewById(R.id.RemoveRequestA);
+
             //update = (TextView) itemView.findViewById(R.id.updatebtn);
         }
+    }
+
+    public void remove(String reqID, int position) {
+
+
+        String URL_ = Urls.ROOT_URL + "removeRequest.php" + Urls.KEY + "&reqID=" + reqID;
+
+        JsonArrayRequest request = new JsonArrayRequest(URL_, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray array) {
+                JSONObject object1;
+
+                for (int i = 0; i <= array.length(); i++) {
+                    try {
+
+                        object1 = array.getJSONObject(i);
+
+                        String msg = object1.getString("response");
+                        if (msg.equals("success")) {
+                            dataList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(0, getItemCount());
+                            Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
+                        } else if (msg.equals("fail")) {
+
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(request);
     }
 }

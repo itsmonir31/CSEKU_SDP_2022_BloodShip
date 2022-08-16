@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodship.others.SharedPref;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +32,7 @@ public class Login extends AppCompatActivity {
     EditText email, password;
     boolean valid;
     LottieAnimationView rprogress;
+    CheckBox admin;
 
 //    private static final String url = "https://mk31.xyz/API_rcku/login.php";
 
@@ -42,20 +46,22 @@ public class Login extends AppCompatActivity {
 
         rprogress = findViewById(R.id.lprogress);
 
+        admin = (CheckBox) findViewById(R.id.checkBox);
+
     } //onCreate end
 
 
-    public void session(){
+    public void session() {
         session = Boolean.valueOf(SharedPref.readSP(getApplicationContext(), "session", "false"));
         //Toast.makeText(getApplicationContext(), String.valueOf(session), Toast.LENGTH_LONG).show();
-        if (session){
+        if (session) {
             startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             finish();
         }
     }
 
 
-//    check someone is already logged in or not
+    //    check someone is already logged in or not
     @Override
     protected void onStart() {
         session();
@@ -98,27 +104,33 @@ public class Login extends AppCompatActivity {
             checkField(password);
         }
 
-        if (valid) {
+        if (admin.isChecked() && valid) {
             rprogress.setVisibility(View.VISIBLE);
 
-            loginFuncSQl();
+            loginFuncSQl("adminFetch.php");
+        }else if (valid) {
+            rprogress.setVisibility(View.VISIBLE);
+
+            loginFuncSQl("login.php");
         }
     }
 
 
-    public void loginFuncSQl_(){
+    public void loginFuncSQl_() {
 
     }
 
-    public void loginFuncSQl() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.ROOT_URL+"login.php"+Urls.KEY, new Response.Listener<String>() {
+    public void loginFuncSQl(String base) {
+        Log.d("check", Urls.ROOT_URL + base + Urls.KEY);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.ROOT_URL + base + Urls.KEY, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
                 email.getText().clear();
                 password.getText().clear();
 
                 if (response != null && response.length() >= 5) {
-                    Toast.makeText(getApplicationContext(), "Login Successfull! "+response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Login Successfull! " + response, Toast.LENGTH_LONG).show();
 
                     //shared-preference
 //                    SharedPreferences sp = getSharedPreferences("credentials", MODE_PRIVATE);
@@ -133,7 +145,16 @@ public class Login extends AppCompatActivity {
                     rprogress.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(getApplicationContext(), HomeScreen.class));
                     finish();
-                } else if (response.equals("fail")) {
+                }else  if (response != null && response.length() >= 1 && !response.equals("fail")) {
+                    Snackbar.make(email, "Success " + response, Snackbar.LENGTH_LONG).show();
+                    SharedPref.saveSP(getApplicationContext(), "session", "true");
+                    SharedPref.saveSP(getApplicationContext(), "s_id", response);
+                    SharedPref.saveSP(getApplicationContext(), "isA", "true");
+
+                    rprogress.setVisibility(View.INVISIBLE);
+                    startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                    finish();
+                }else if (response.equals("fail")) {
                     rprogress.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), "Invalid Credentials.", Toast.LENGTH_SHORT).show();
                 }

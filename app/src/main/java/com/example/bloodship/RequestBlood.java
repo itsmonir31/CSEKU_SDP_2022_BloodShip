@@ -11,8 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodship.others.SharedPref;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,8 +39,10 @@ public class RequestBlood extends AppCompatActivity {
 
     EditText problem, bg, quantity, time, date, addrs, aContact, rContact;
     boolean valid = true;
-    String sdate, stime;
+    String sdate, stime, bgSpinVal;
     int checkCount;
+    Spinner bg_spinnerReq;
+    TextView bgTVreq;
 
 
     @Override
@@ -45,13 +52,36 @@ public class RequestBlood extends AppCompatActivity {
 
         //hoooks
         problem = findViewById(R.id.ETproblem);
-        bg = findViewById(R.id.ETbg);
+//        bg = findViewById(R.id.ETbg);
         quantity = findViewById(R.id.ETquantity);
         time = findViewById(R.id.ETtime);
         date = findViewById(R.id.ETdate);
         addrs = findViewById(R.id.ETaddress);
         aContact = findViewById(R.id.ETaContact);
         rContact = findViewById(R.id.ETrContact);
+        bgTVreq = findViewById(R.id.bgTVreq);
+
+
+        bg_spinnerReq = findViewById(R.id.bg_spinner_requestPost);
+
+        ArrayAdapter<CharSequence> adapter_ = ArrayAdapter.createFromResource(this, R.array.bgReq, android.R.layout.simple_spinner_item);
+        adapter_.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bg_spinnerReq.setAdapter(adapter_);
+        bg_spinnerReq.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bgSpinVal = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), bgSpinVal, Toast.LENGTH_SHORT).show();
+
+//                bgTVreq.setText("Blood Group: ");
+//                LoadAllUserInfo(bg_spinner, disc_spinner);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         time.setInputType(InputType.TYPE_NULL);
         time.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +158,7 @@ public class RequestBlood extends AppCompatActivity {
                 checkCount = 0;
 
                 checkField(problem);
-                checkField(bg);
+                checkBG(bgSpinVal);
                 checkField(quantity);
                 checkField(time);
                 checkField(date);
@@ -185,6 +215,18 @@ public class RequestBlood extends AppCompatActivity {
             }
         });
     }   // onCreate end
+
+    private boolean checkBG(String bg) {
+        if (bg.equals("None")){
+            Snackbar.make(bgTVreq, "Select an blood group :(", Snackbar.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
+            valid = false;
+        }else{
+            valid = true;
+            checkCount++;
+        }
+        return valid;
+    }
 
 
     private void clearEditText() {

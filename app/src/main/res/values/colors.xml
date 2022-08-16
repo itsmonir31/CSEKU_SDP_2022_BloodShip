@@ -14,4 +14,9 @@
     <color name="secondary_">#fdbb2d</color>
 
     <color name="secondary_two">#FFC185</color>
+
+    <color name="blueishText">#213150</color>
+    <color name="red">#FD4D4D</color>
+    <color name="green">#2C852F</color>
+
 </resources>
