@@ -1,7 +1,7 @@
 # CSEKU_SDP_2022_BloodShip
 This software will be made for the use of the students of Khulna University. There are several cases when any of us need blood but we didn’t find the blood. This software will help them in this regard. To know more read the SRS.
 
-Details Description:
+# Details Description:
 Blood donation is crucial in situations like accidents, organ transplants, and cancer treatments. Additionally, individuals interested in donating blood should either attend a designated blood donation event or visit a blood bank. In this context, we introduce our blood donation management system.
 
 Our system is designed to comprehensively track activities related to blood donation. Initially, it collects and stores data about potential donors in a dedicated database. This database houses all pertinent information regarding blood donation, including health assessments, availability for donation, donation history, and relevant timestamps. This online blood donation management system serves the dual purpose of maintaining a registry of blood donors and aiding recipients in efficiently identifying and contacting suitable donors. It operates through two distinct modules: one for administrators and one for regular users. Users have the capability to register, make donation requests, and also register as potential donors.
